@@ -9,27 +9,21 @@ Scalaz extensions
 Usage
 -----
 ```scala
+import scala.concurrent.Future
 import com.zeebox.core.http.common.HttpStatus.{NotFound, Ok}
 import com.zeebox.core.http.server.http.HttpResponse
 import com.zeebox.core.scalaz.future.{FutureEither, \?/}
 
-import scala.concurrent.Future
-
 case class UserNotFound(userId: String)
 
 class Example {
-  type UserId = String
-  type User = AnyRef
-
-  val userId = "123"
-
   def findFriends(userId: UserId): UserNotFound \?/ Seq[User] = ???
 
   def handleUserNotFound: UserNotFound => HttpResponse[Nothing] = {
     userNotFoundError => HttpResponse.failure(NotFound, s"User $userId not found")
   }
 
-  def friendsResponse: Future[HttpResponse[Seq[User]]] = {
+  def friendsResponse(userId: UserId): Future[HttpResponse[Seq[User]]] = {
     val response: FutureEither[HttpResponse[Nothing], HttpResponse[Seq[User]]] = for {
       friends <- findFriends(userId) leftMap handleUserNotFound
     } yield {
