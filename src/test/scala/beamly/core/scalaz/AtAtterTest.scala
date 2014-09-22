@@ -1,4 +1,4 @@
-package com.zeebox.core.scalaz
+package beamly.core.scalaz
 
 import org.specs2._
 import scalaz.@@

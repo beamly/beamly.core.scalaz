@@ -1,4 +1,4 @@
-package com.zeebox.core.scalaz.future
+package beamly.core.scalaz.future
 
 import scala.language.higherKinds
 import scala.concurrent.{Await, ExecutionContext, Future}

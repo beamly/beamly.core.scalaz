@@ -1,4 +1,4 @@
-package com.zeebox.core.scalaz.future
+package beamly.core.scalaz.future
 
 import scala.concurrent.{ExecutionContext, Future}
 import scala.util.Try

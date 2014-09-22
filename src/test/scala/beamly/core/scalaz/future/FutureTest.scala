@@ -1,4 +1,4 @@
-package com.zeebox.core.scalaz.future
+package beamly.core.scalaz.future
 
 import scala.concurrent.Future
 import scala.concurrent.ExecutionContext.Implicits.global
