@@ -8,11 +8,12 @@ Scalaz extensions
 
 Usage
 -----
+Include the dependency from maven central: <a href="http://search.maven.org/#search%7Cga%7C1%7Cg%3A%20%22com.beamly%22%20beamly-core-scalaz" title="com.beamly:beamly-core-scalaz">com.beamly:beamly-core-scalaz</a>
 ```scala
 import scala.concurrent.Future
+import beamly.core.scalaz.future.{FutureEither, \?/}
 import com.zeebox.core.http.common.HttpStatus.{NotFound, Ok}
 import com.zeebox.core.http.server.http.HttpResponse
-import beamly.core.scalaz.future.{FutureEither, \?/}
 
 case class UserNotFound(userId: String)
 
@@ -24,11 +25,10 @@ class Example {
   }
 
   def friendsResponse(userId: UserId): Future[HttpResponse[Seq[User]]] = {
-    val response: FutureEither[HttpResponse[Nothing], HttpResponse[Seq[User]]] = for {
-      friends <- findFriends(userId) leftMap handleUserNotFound
-    } yield {
-      HttpResponse(Ok, data = Some(friends))
-    }
+    val response: FutureEither[HttpResponse[Nothing], HttpResponse[Seq[User]]] =
+      for {
+        friends <- findFriends(userId) leftMap handleUserNotFound
+      } yield HttpResponse(Ok, data = Some(friends))
     response.union
   }
 }
