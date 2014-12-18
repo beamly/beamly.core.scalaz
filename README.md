@@ -1,13 +1,10 @@
-Scalaz extensions
-=================
+# Scalaz extensions
 
-`FutureEither`
---------------
+## `FutureEither`
 `FutureEither` is a specialised version of `scalaz.EitherT[Future, A, B]` which allows simple composition of
 `Future[A \/ B]` operations.
 
-Usage
------
+## Usage
 Include the dependency from maven central: <a href="http://search.maven.org/#search%7Cga%7C1%7Cg%3A%20%22com.beamly%22%20beamly-core-scalaz" title="com.beamly:beamly-core-scalaz">com.beamly:beamly-core-scalaz</a>
 ```scala
 import scala.concurrent.Future
@@ -40,8 +37,7 @@ The steps above when calling `friendsResponse` are:
 * the entire for-comprehension thus returns `FutureEither[HttpResponse[Nothing], HttpResponse[Seq[User]]]`
 * the `union` method flattens the `FutureEither[HttpResponse[Nothing], HttpResponse[Seq[User]]]` to a `Future[HttpResponse[Seq[User]]]`
 
-Converting a regular `Future` to a `FutureEither`
--------------------------------------------------
+## Converting a regular `Future` to a `FutureEither`
 ```scala
 def findUser(userId: UserId): Future[Option[User]]
 
