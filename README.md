@@ -12,7 +12,7 @@ Usage
 import scala.concurrent.Future
 import com.zeebox.core.http.common.HttpStatus.{NotFound, Ok}
 import com.zeebox.core.http.server.http.HttpResponse
-import com.zeebox.core.scalaz.future.{FutureEither, \?/}
+import beamly.core.scalaz.future.{FutureEither, \?/}
 
 case class UserNotFound(userId: String)
 
