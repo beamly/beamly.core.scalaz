@@ -50,3 +50,4 @@ findUser.toEither.leftMap {
         UserNotFound(userId)
 }
 ```
+`findUser.toEither` returns `FutureEither[Throwable, Option[User]]` and the `leftMap` call simply converts `Throwable` to `UserNotFound`.
